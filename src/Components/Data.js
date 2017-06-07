@@ -23,7 +23,7 @@ class Data extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://swapi.co/api/films')
+    fetch('https://swapi.co/api/films')
       .then(response => response.json())
       .then((data) => {
         this.setState({
