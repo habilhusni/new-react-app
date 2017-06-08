@@ -12,6 +12,7 @@ import Data from './Components/Data';
 import Home from './Components/Home';
 import Login from './Components/Login';
 import AddFilm from './Components/AddFilm';
+import EditFilm from './Components/EditFilm';
 import NoMatch from './Components/NoMatch';
 
 
@@ -33,6 +34,7 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/data" component={Data} />
             <Route exact path="/add" component={AddFilm} />
+            <Route exact path="/edit" component={EditFilm} />
             <Route component={NoMatch} />
           </Switch>
         </div>

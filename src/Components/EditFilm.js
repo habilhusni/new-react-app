@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { addData } from '../Actions';
+import { editData } from '../Actions';
 
 const styles = {
   postForm: {
@@ -28,7 +28,7 @@ const styles = {
   },
 };
 
-class AddFilm extends React.Component {
+class EditFilm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,18 +45,16 @@ class AddFilm extends React.Component {
     newState[e.target.name] = e.target.value;
     this.setState(newState);
   }
-
   render() {
     const { title, director, isSubmitted } = this.state;
     return (
       <div>
-
         { isSubmitted && <Redirect to={{ pathname: '/data' }} /> }
-        <h1>Add New Film</h1>
+        <h1>Edit Film</h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            this.props.addData(this.state);
+            this.props.editData(this.state);
             this.setState({ title: '', director: '', isSubmitted: true });
           }}
           style={styles.postForm}
@@ -83,14 +81,13 @@ class AddFilm extends React.Component {
           </label>
           <input type="submit" value="Add Film" style={styles.btn} />
         </form>
-
       </div>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  addData: newData => dispatch(addData(newData)),
+  editData: newData => dispatch(editData(newData)),
 });
 
-export default connect(null, mapDispatchToProps)(AddFilm);
+export default connect(null, mapDispatchToProps)(EditFilm);

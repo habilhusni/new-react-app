@@ -1,4 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import { editData, delData } from '../Actions';
+import Background from '../img/attack-of-the-clans.jpg';
 
 const styles = {
   footer: {
@@ -11,34 +16,22 @@ const styles = {
   },
   cardcontent: {
     textAlign: 'center',
+    backgroundImage: `url(${Background})`,
+    backgroundSize: 'cover',
   },
 };
 
 class Data extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      results: [],
-    };
-  }
-
-  componentDidMount() {
-    fetch('https://swapi.co/api/films')
-      .then(response => response.json())
-      .then((data) => {
-        this.setState({
-          results: data.results,
-        });
-      })
-    .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   this.props.fetchData();
+  // }
 
   render() {
     return (
       <div>
 
         {
-          this.state.results.map(result => (
+          this.props.data.map(result => (
             <div key={result.episode_id} className="card" style={styles.card}>
               <div className="card-content" style={styles.cardcontent}>
                 <p className="title">{result.title}</p>
@@ -46,8 +39,23 @@ class Data extends React.Component {
                 <p className="episode">Episode: {result.episode_id}</p>
               </div>
               <footer className="card-footer" style={styles.footer}>
-                <p className="card-footer-item"><a className="button is-primary">Edit</a></p>
-                <p className="card-footer-item"><a className="button is-primary">Delete</a></p>
+                <p
+                  className="card-footer-item"
+                >
+                  <a
+                    className="button is-warning"
+                  >
+                    <Link to="/edit">Edit</Link>
+                  </a>
+                </p>
+                <p className="card-footer-item">
+                  <button
+                    className="button is-primary"
+                    onClick={() => this.props.delData(result.episode_id)}
+                  >
+                    Delete
+                  </button>
+                </p>
               </footer>
               <br />
               <br />
@@ -63,4 +71,18 @@ class Data extends React.Component {
 
 }
 
-export default Data;
+const mapStateToProps = (state) => {
+  return {
+    data: state.data,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // fetchData: () => dispatch(fetchData()),
+    delData: dataId => dispatch(delData(dataId)),
+    editData: data => dispatch(editData(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Data);
