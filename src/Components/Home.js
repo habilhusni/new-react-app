@@ -27,7 +27,7 @@ const Home = props => (
           <i className="fa fa-home" />
         </span>
         <h1 className="title">SWAPI</h1>
-        <h2 className="subtitle">The Star Wars API haha</h2>
+        <h2 className="subtitle">The Star Wars API husni habil</h2>
       </div>
       <div className="buttonChoice" style={styles.buttonChoice}>
         <a className="button is-info" style={styles.button2}>
