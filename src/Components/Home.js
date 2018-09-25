@@ -24,7 +24,7 @@ class Home extends Component {
 
   handleGetNews = () =>
     axios
-      .get("https://desolate-forest-78881.herokuapp.com/news")
+      .get("https://idx-api.herokuapp.com/news")
       .then(function(response) {
         console.log(response.data);
       })
@@ -37,7 +37,7 @@ class Home extends Component {
     const that = this;
 
     return axios
-      .post("https://desolate-forest-78881.herokuapp.com/news", {
+      .post("https://idx-api.herokuapp.com/news", {
         Id: Id,
         Category: Category,
         Title: Title,
@@ -63,7 +63,7 @@ class Home extends Component {
 
   handleDeleteNews = () =>
     axios
-      .delete("https://desolate-forest-78881.herokuapp.com/news/2")
+      .delete("https://idx-api.herokuapp.com/news/2")
       .then(function(response) {
         console.log(response);
       })
